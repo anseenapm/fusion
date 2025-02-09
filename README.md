@@ -9,7 +9,7 @@
 - Member 3: Thejalakshmi
 
 ### Hosted Project Link
-[Add your hosted project link here]
+(https://fusion-black-six.vercel.app/)
 
 ### Project Description
 The Legal Advisor is a web-based platform that helps users access quick and reliable legal advice by selecting a legal category and providing keywords related to their issue. The system retrieves relevant legal guidance from a structured database, ensuring users receive category-specific advice instantly.
