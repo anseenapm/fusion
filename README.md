@@ -56,14 +56,7 @@ node server.js
 
 ### Project Documentation
 #### Screenshots (Add at least 3)
-![Screenshot1](Add screenshot 1 here)
-*User selects category and enters a keyword to get legal advice.*
-
-![Screenshot2](Add screenshot 2 here)
-*Legal advice is displayed based on user input.*
-
-![Screenshot3](Add screenshot 3 here)
-*Firestore database structure for storing legal laws and advice.*
+https://drive.google.com/file/d/1ZFvJuNpXkpmoFcquFeeEIKb-Og7q3ajS/view?usp=drive_link
 
 #### Diagrams
 ![Workflow](Add your workflow/architecture diagram here)
