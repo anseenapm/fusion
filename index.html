@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Advisor</title>
+    
+</head>
+<body>
+
+    <h1>Legal Advisor</h1>
+
+    <label for="categoryDropdown">Select Category:</label>
+    <select id="categoryDropdown">
+        <option value="">-- Select --</option>
+        <option value="general">General</option>
+        <option value="criminal">Criminal</option>
+        <option value="family">Family</option>
+        <option value="business">Business</option>
+        <option value="environment">Environment</option>
+    </select>
+
+    <br><br>
+
+    <label for="keywordInput">Enter Keyword:</label>
+    <input type="text" id="keywordInput" placeholder="e.g., pollution, fraud, contract">
+
+    <br><br>
+
+    <button onclick="getLegalAdvice()">Get Legal Advice</button>
+
+    <h2>Advice:</h2>
+    <div id="adviceResult"></div>
+
+    <script>
+        async function getLegalAdvice() {
+            const selectedCategory = document.getElementById("categoryDropdown").value;
+            const keyword = document.getElementById("keywordInput").value.trim();
+
+            if (!selectedCategory || !keyword) {
+                document.getElementById("adviceResult").innerHTML = "<p style='color: red;'>Category and keyword are required.</p>";
+                return;
+            }
+
+            try {
+                const response = await fetch("http://localhost:5000/getAdvice", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ category: selectedCategory, keyword })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    let adviceHTML = "<ul>";
+                    data.advice.forEach(advice => {
+                        adviceHTML += `<li><strong>${advice.section}</strong>: ${advice.advice}</li>`;
+                    });
+                    adviceHTML += "</ul>";
+                    document.getElementById("adviceResult").innerHTML = adviceHTML;
+                } else {
+                    document.getElementById("adviceResult").innerHTML = `<p style='color: red;'>${data.error}</p>`;
+                }
+            } catch (error) {
+                console.error("Fetch Error:", error);
+                document.getElementById("adviceResult").innerHTML = "<p style='color: red;'>Server error. Try again later.</p>";
+            }
+        }
+    </script>
+
+</body>
+</html>
